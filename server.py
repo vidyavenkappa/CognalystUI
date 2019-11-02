@@ -58,7 +58,7 @@ def add_review():
                 "user" : user,
                 "created_at" : time,
                 "rating" : 0,
-                "manual_rating" : user_rating
+                "manual_rating" : float(user_rating)
 
             }
             
@@ -118,7 +118,7 @@ def add_review():
         hypo_collection.update_one({'b_name':b_name},{"$set": {"max": review_rating+0.1 }})
         B = review_rating+0.1
     if review_rating < A:
-        hypo_collection.update_one({'b_name':b_name},{"$set": {"min": review-0.1 }})
+        hypo_collection.update_one({'b_name':b_name},{"$set": {"min": review_rating-0.1 }})
         A = review_rating - 0.1
     predicted_rating = ((review_rating - A)*5)/(B-A)
 
@@ -128,7 +128,7 @@ def add_review():
 @app.route('/getallreviews', methods=['POST'])
 def get_all_reviews():
     b_name = json.loads(request.data)['b_name']
-    all_reviews_docs = reviews_collection.find({"b_name":b_name})
+    all_reviews_docs = reviews_collection.find({"b_name":b_name}).sort("created_at",-1)
     data = []
     for review in all_reviews_docs:
         review['_id'] = str(review['_id'])
