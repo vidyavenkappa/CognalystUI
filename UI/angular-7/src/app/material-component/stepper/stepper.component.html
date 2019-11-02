@@ -1,0 +1,15 @@
+<div fxLayout="column" class="bg-warning" >
+    <div *ngFor="let item of reviewData" > 
+      <mat-card class="example-card" style="width:95%;margin:24px;">
+          <mat-card-header>
+              <div mat-card-avatar class="example-header-image" ></div>
+              <mat-card-title>{{item.username}}</mat-card-title>
+              <mat-card-subtitle>Rating: {{item.rating}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+              <p style="white-space: pre-wrap;">{{item.review}}</p>
+          </mat-card-content>
+          
+      </mat-card>
+    </div>
+</div>

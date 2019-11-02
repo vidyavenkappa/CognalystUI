@@ -1,0 +1,63 @@
+.example-header-image {
+  background-image: url('assets/images/male_logo.jpeg');
+  background-size: cover;
+}
+.example-card {
+  max-height: 1000px;
+  overflow-y: auto;
+}
+.dot {
+  height: 150px;
+  width: 150px;
+  background-color: #1e88e2;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  box-shadow: 10px -5px 5px #ccc;
+  color:white;
+  font-size: 20px;
+}
+.circle {
+  position: relative;
+  display: block;
+  margin: 2em 0;
+  background-color: transparent;
+  color: #222;
+  text-align: center;
+  }
+  .circle__inner {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    }
+    .circle__wrapper {
+    display: table;
+    width: 100%;
+    height: 100%;
+    }
+    .circle__content {
+      display: table-cell;
+      padding: 1em;
+      vertical-align: middle;
+      }
+
+      .circle-text {
+        display: table-cell;
+        height: 200px; /*change this and the width
+        for the size of your initial circle*/
+        width: 200px;
+        text-align: center;
+        vertical-align: middle;
+        border-radius: 50%;
+        /*make it pretty*/
+        background: #1e88e5;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1.0), 0 6px 20px 0 rgba(0.5, 0.5, 0.5, 0.5);
+        color: #fff;
+        font: 18px "josefin sans", arial; /*change this
+        for font-size and font-family*/
+        }

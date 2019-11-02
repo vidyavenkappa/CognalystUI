@@ -1,0 +1,85 @@
+{
+    "data": [
+    {
+    "_id": "5d9262ffb0a235d8d02757dc",
+    "b_name": "Om Made Cafe",
+    "created_at": "Tue, 01 Oct 2019 01:48:07 GMT",
+    "rating": -0.1287292857142857,
+    "review": "Very dirty restaurant. Unclean tables, plates and spoons. I could barely touch the menu card because it was too greasy and stained for me to touch it. The water bottle had previous customers food fingerprints on it.",
+    "user": "Prasanna"
+    },
+    {
+    "_id": "5d9265f3b0a235d8d027593f",
+    "b_name": "Om Made Cafe",
+    "created_at": "Tue, 01 Oct 2019 02:00:43 GMT",
+    "rating": -0.0980972867823448,
+    "review": "They need to be serious about all customers. We had planned for a gettogether with my friends at this place. It was raining heavily in the evening, few of my friends came in car, they had valet parking but still the person over there, denied and ask us to find our own parking. Finally after few arguments he allowed to parked our car in the underground parking place as if he is doing some favour to us. Few other friends came in bike and bullets. It was raining and even through there was parking place underground they asked them to find there own parking space as the underground parking is only for cars and special guests. We called the Manager the Manager was just a mute spectator as customers coming in two wheelers are served free in the cafe. Finally they got pissed off and few of them went to some other cafe nearby. The whole evening was ruined below are there careless attitude",
+    "user": "shibani hegde"
+    },
+    {
+    "_id": "5d9264aeb0a235d8d02758db",
+    "b_name": "Om Made Cafe",
+    "created_at": "Tue, 01 Oct 2019 01:55:18 GMT",
+    "rating": 0.10860937770809093,
+    "review": "The best part about this place is the ambience on the roof top location. The food though is a let down. It is very expensive and the taste and quality is not at all good for the price charged. Service is good..",
+    "user": "shibani"
+    },
+    {
+    "_id": "5d926681b0a235d8d027599b",
+    "b_name": "Om Made Cafe",
+    "created_at": "Tue, 01 Oct 2019 02:03:05 GMT",
+    "rating": 0.23726470681584214,
+    "review": "Om Made Cafe, located in the posh Koramangala 5th Block area, is a quaint little rooftop restaurant serving quality continental dishes. The main attraction is the unique ambience and the soothing view of the city skyline it provides. The furniture is very arty and it's a beautiful place to spend your evening with friends and family. They light a candle on every table and there's not much light apart from these. The food is very good, though a bit costly.",
+    "user": "shibani hegde"
+    },
+    {
+    "_id": "5d9263cfb0a235d8d027583d",
+    "b_name": "Om Made Cafe",
+    "created_at": "Tue, 01 Oct 2019 01:51:35 GMT",
+    "rating": 0.266516785623,
+    "review": "NO frills restaurant with large menu which includes western and south food. Coffee served here is of great value and recommend. Not sure of parking area in the front side.",
+    "user": "vidyag"
+    },
+    {
+    "_id": "5d9263b0b0a235d8d0275829",
+    "b_name": "Om Made Cafe",
+    "created_at": "Tue, 01 Oct 2019 01:51:04 GMT",
+    "rating": 0.27308386384466665,
+    "review": "Found it to be an average place with not many options in the menu. The food quality is very average. The location and ambience is good",
+    "user": "vidya"
+    },
+    {
+    "_id": "5d92643ab0a235d8d027588a",
+    "b_name": "Om Made Cafe",
+    "created_at": "Tue, 01 Oct 2019 01:53:22 GMT",
+    "rating": 0.32395206414874994,
+    "review": "Located in heart of Koramangala, ambience is main attraction as it's a roof top open calm place plus good food is a plus here. Valet parking available but the place is overall pricey.",
+    "user": "vidyag"
+    },
+    {
+    "_id": "5d926fb4b0a235d8d0275ced",
+    "b_name": "Om Made Cafe",
+    "created_at": "Tue, 01 Oct 2019 02:42:20 GMT",
+    "rating": 0.416116189488,
+    "review": "I heard a lot about this restaurant. so visited this time during my Bangalore visit.. Perfect ambience even on a sunny day.. food quality and taste is worth price.. Delicious food.. I ordered Char Cheese Risotto...It was yummy.... Service is good.",
+    "user": "niteesh"
+    },
+    {
+    "_id": "5d92640bb0a235d8d027585c",
+    "b_name": "Om Made Cafe",
+    "created_at": "Tue, 01 Oct 2019 01:52:35 GMT",
+    "rating": 0.46139372384906674,
+    "review": "The place is very conveniently located at the roof top of a house in kormangala with a good view specially during sunset. The food is also nice and the ambience great. Having said that I feel that they are extremely overpriced for the service/ food which they offer. So if you are looking for a nice enjoyable evening with friends and price is not a concern then this is the place to go in Bangalore.",
+    "user": "vidyag"
+    },
+    {
+    "_id": "5d92669eb0a235d8d02759c8",
+    "b_name": "Om Made Cafe",
+    "created_at": "Tue, 01 Oct 2019 02:03:34 GMT",
+    "rating": 0.4741416878658749,
+    "review": "Om Made Cafe has a relaxed ambiance and nice rooftop sitting. It is great during the daytime as well. The service is quite good and the staff very coordial. I visited seeing the good reviews on tripadvisor. However, the food and beverages were disappointing. Though the descriptions on the menu look promising, the actual taste can be way better. Precisely the reason for my average rating. Food quality needs to improve.",
+    "user": "niteesh"
+    }
+    ],
+    "status": "success"
+    }

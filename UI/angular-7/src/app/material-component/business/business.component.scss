@@ -1,0 +1,64 @@
+.demo-chip-list {
+  width: 100%;
+ }
+  
+button{
+  color:#fff;
+  background: #1e88e5;
+  padding:10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  }
+  
+ .container
+ {
+  width:1200px;
+  margin: 20px auto;
+  columns: 3;
+  column-gap:40px;
+  overflow: hidden;
+  break-inside: avoid;
+  background: #333;
+  
+ }
+ .box
+ {
+  width:100%;
+  margin:0 0 20px;
+  padding: 10px;
+  background: #fff;
+  overflow:hidden;
+  break-inside: avoid;
+ }
+  
+  
+  
+ .example-card {
+  max-height: 1000px;
+  overflow-y: auto;
+ }
+  
+ .example-header-image {
+  background-image: url('assets/images/male_logo.jpeg');
+  background-size: cover;
+}
+mat-form-field {
+  margin-right: 12px;
+}
+.vertical {
+  display: inline-block;
+  //width: 20%;
+  //height: 40px;
+  -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+  transform: rotate(-90deg);
+}
+.vertical {
+  box-shadow: inset 0px 4px 6px #ccc;
+}
+.progress-bar {
+  box-shadow: inset 0px 4px 6px rgba(100,100,100,0.6);
+}
+ 
+
+ 

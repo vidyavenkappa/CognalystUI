@@ -1,0 +1,9 @@
+<button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5"> <img src="assets/images/users/1.jpeg" alt="user" class="profile-pic"> </button>
+<mat-menu #profile="matMenu" class="mymegamenu">
+    <button mat-menu-item (click)="router.navigate(['/business'])">
+        <mat-icon>settings</mat-icon> Business View </button>
+    <button mat-menu-item (click)="router.navigate(['/user']);">
+        <mat-icon>account_box</mat-icon> End-User View </button>
+    
+</mat-menu>
+

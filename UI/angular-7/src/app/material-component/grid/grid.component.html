@@ -1,0 +1,35 @@
+<div fxLayout="row" style="background-color: rgb(231, 211, 211)">
+<mat-card class=" card text-center" style="height:40%;width:50%;padding-left:10%" >
+  <mat-card-header>
+        
+      <mat-card-title style="font-size:24px;padding-left:30px;">TOP 10 HIGHLIGHTS</mat-card-title>
+      
+  </mat-card-header>
+  <div class="card-deck" style="margin-left:120px">
+  
+    <mat-card-content *ngFor="let item of topPos" class="text-center "  >
+        <div class="circle-text bg-success">
+            {{item}}
+         </div>
+    </mat-card-content>
+   
+</div>
+</mat-card>
+<mat-card class=" card text-center" style="height:40%;width:50%;padding-left:10%" >
+    <mat-card-header>
+          
+        <mat-card-title style="font-size:24px;padding-left:30px;">TOP 10 ISSUES</mat-card-title>
+        
+    </mat-card-header>
+    <div class="card-deck " style="margin-left:120px">
+      <mat-card-content *ngFor="let item of topNeg" class="text-center "style="horizontal-align: middle;
+      vertical-align: middle;" >
+          
+          <div class="circle-text bg-danger">
+              {{item}}
+           </div>
+      </mat-card-content>
+    </div>
+      
+  </mat-card>
+</div>
