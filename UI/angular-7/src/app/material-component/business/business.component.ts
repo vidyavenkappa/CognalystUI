@@ -67,7 +67,9 @@ export class BusinessComponent {
     {value: 'fortnight'},
     {value: 'month'},
   ];
-   
+  
+  selected = 'positive_cloud';
+
   allreviews:allReviews[]=[];
   review={};
   keywords={};
@@ -527,7 +529,7 @@ export class BusinessComponent {
           
           this.wordData=this.wordDataPosObj['data'];
           let j=0;
-          
+          this.wordDataPos=[];
           for(let i in this.wordData)
           {
               this.wordDataPos[j]={weight:this.wordData[i][1],text:this.wordData[i][0],color:this.colors[j%6]};
@@ -561,7 +563,7 @@ export class BusinessComponent {
           
           this.wordData=this.wordDataPosObj['data'];
           let j=0;
-          
+          this.wordDataPos=[];
           for(let i in this.wordData)
           {
               this.wordDataPos[j]={weight:this.wordData[i][1],text:this.wordData[i][0],color:this.colors[j%6]};

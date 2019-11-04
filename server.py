@@ -50,7 +50,9 @@ def add_review():
     review = json.loads(request.data)['review']
     user = json.loads(request.data)['user']
     user_rating = json.loads(request.data)['user_rating']
-    time = datetime.now()
+    # time = datetime.now()
+    final_date_1=format_dates(json.loads(request.data)['date'])
+    time = datetime.strptime(final_date_1,"%a, %d %b %Y %X GMT")
 
     document = {
                 "b_name" : b_name,
@@ -124,6 +126,8 @@ def add_review():
 
     reviews_collection.update_one({"_id":review_doc_id},{"$set": {"rating":review_rating,"predicted_rating":predicted_rating}},upsert=True)
     return jsonify({"status":"success"})
+
+
 
 @app.route('/getallreviews', methods=['POST'])
 def get_all_reviews():
@@ -201,6 +205,31 @@ def get_all_positive_with_scores():
     #keywords_highest = nlargest(15, final_key_words, key = final_key_words.get)
 
     return jsonify({"status":"success","data":final_key_words})
+
+@app.route('/getallnegativewithscores', methods=['POST'])
+def get_all_negative_with_scores():
+    b_name = json.loads(request.data)['b_name']
+    all_keys_docs = keywords_collection.find({"b_name":b_name,"type":"negative"}).sort("time",-1)
+    print(all_keys_docs)
+    keywords_with_scores={}
+    for keyword in all_keys_docs:
+        keyword['_id'] = str(keyword['_id'])
+        keyword['review_id'] = str(keyword['review_id'])
+        if(keyword["keyword"] in keywords_with_scores.keys()):
+            keywords_with_scores[keyword["keyword"]].append(keyword["score"])
+        else:
+            keywords_with_scores[keyword["keyword"]]=[keyword["score"]]
+
+    final_key_words={}
+    for key,value in keywords_with_scores.items():
+        final_key_words[key]=Average(value)
+    print(final_key_words)
+    final_key_words=sorted(final_key_words.items(), key = lambda x : x[1])
+    print(final_key_words)
+    #keywords_highest = nlargest(15, final_key_words, key = final_key_words.get)
+
+    return jsonify({"status":"success","data":final_key_words})
+
 
 def Average(lst):
     return sum(lst) / len(lst)

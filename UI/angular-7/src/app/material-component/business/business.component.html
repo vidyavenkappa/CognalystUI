@@ -207,8 +207,8 @@
                 </mat-card-header>
                 <mat-card-content>
                         <mat-form-field>
-                            <mat-select matNativeControl required placeholder="Select Positive/Negative Cloud" >
-                                <mat-option value="positive_cloud" (click) = "wordCloudPos()">Positive Cloud</mat-option>
+                            <mat-select matNativeControl required placeholder="Select Positive/Negative Cloud" [(value)]="selected">
+                                <mat-option value="positive_cloud" (click) = "wordCloudPos()" selected>Positive Cloud</mat-option>
                                 <mat-option value="negative_cloud" (click) = "wordCloudNeg()">Negative Cloud</mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -249,15 +249,15 @@
 
                     <div [formGroup]="date_data" class="example-full-width">
                         <mat-form-field class="col-3">
-                            <input matInput [matDatepicker]="picker1" [min]="minDate1" [max]="maxDate1" 
-                            placeholder="Select a Date" [formControl]="date1" (dateInput)="getDate('date1', $event)" readonly>
+                            <input matInput 
+                            placeholder="Select a Date" formControlName="date1" (dateInput)="getDate('date1', $event)" readonly>
                             <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
                             <mat-datepicker #picker1></mat-datepicker>
                         </mat-form-field>
                                 
                         <mat-form-field class="col-3">
                             <input matInput [matDatepicker]="picker2" placeholder="Select a Date"
-                                    [formControl]="date2" [min]="minDate2" [max]="maxDate2" (dateInput)="getDate('date2', $event)" readonly>
+                            formControlName="date2" [min]="minDate2" [max]="maxDate2" (dateInput)="getDate('date2', $event)" readonly>
                             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                             <mat-datepicker #picker2></mat-datepicker>
                         </mat-form-field>
