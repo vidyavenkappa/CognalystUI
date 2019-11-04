@@ -4,7 +4,8 @@
           <mat-card-header>
               <div mat-card-avatar class="example-header-image" ></div>
               <mat-card-title>{{item.username}}</mat-card-title>
-              <mat-card-subtitle>Rating: {{item.rating}}</mat-card-subtitle>
+              <mat-card-subtitle><star-rating [value]="item.rating"  checkedcolor="#305D02" uncheckedcolor="#C7E596" size="12px"   readonly="true" ></star-rating>{{item.rating}}
+                </mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
               <p style="white-space: pre-wrap;">{{item.review}}</p>

@@ -18,8 +18,6 @@ import { GridComponent } from './grid/grid.component';
 import { StepperComponent } from './stepper/stepper.component';
 import { ReviewComponent } from './review/review.component';
 import { BusinessComponent } from './business/business.component';
-import { ProgressSnipperComponent } from './progress-snipper/progress-snipper.component';
-import { ProgressComponent } from './progress/progress.component';
 import {DialogComponent} from './dialog/dialog.component';
 
 import { GoogleChartsModule } from 'angular-google-charts';
@@ -31,6 +29,7 @@ import { TagCloudModule } from 'angular-tag-cloud-module';
 
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { RatingModule } from 'ng-starrating';
+import { ThankYouPageComponent } from './thank-you-page/thank-you-page.component';
  
 @NgModule({
   imports: [
@@ -71,9 +70,8 @@ import { RatingModule } from 'ng-starrating';
     GridComponent,
     StepperComponent,
     ReviewComponent,
-    ProgressSnipperComponent,
-    ProgressComponent,
-    DialogComponent
+    DialogComponent,
+    ThankYouPageComponent
   ]
 })
 export class MaterialComponentsModule {}

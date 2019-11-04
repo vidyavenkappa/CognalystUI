@@ -21,42 +21,46 @@
             <div fxLayout="row"  fxLayoutGap="12px"  [style.margin-top]="'12px'" >
                 <div fxLayout="column" >
                     <div fxLayout="row">
-                    <mat-card class="example-card card" style="width: 400px;height: 90% ">
-                        <mat-card-content>
+                    <mat-card class="example-card card align-items-center" style="width: 400px;height: 90%;">
+                        <mat-card-content  >
                             <mat-card-title>
                                 AVERAGE CUSTOMER SATISFACTION         
                             </mat-card-title>
                             <br>
                             <!-- <mat-progress-spinner mode="determinate" [value]="satisfactionAvg">{{satisfactionAvg}}%</mat-progress-spinner> 
                             <div > </div> -->
+                            <div style ="margin-left:50px">
                             <circle-progress
                                 [percent]="satisfactionAvg"
                                 [radius]="100"
                                 [outerStrokeWidth]="16"
                                 [innerStrokeWidth]="8"
-                                [outerStrokeColor]="'#78C000'"
-                                [innerStrokeColor]="'#C7E596'"
+                                [outerStrokeColor]="outColorAvg"
+                                [innerStrokeColor]="inColorAvg"
                                 [animation]="true"
                                 [animationDuration]="300"
-                                ></circle-progress>
+                                 ></circle-progress>
+                            </div>
 
                         </mat-card-content>
                     </mat-card>
-                    <mat-card class="example-card card" style="width: 400px;height: 90% ">
+                    <mat-card class="example-card card " style="width: 400px;height: 90%">
                             <mat-card-content>
                                 <mat-card-title>
                                     OVERALL CUSTOMER SATISFACTION         
                                 </mat-card-title>
                                 <br>
+                                <div style ="margin-left:50px">
                                 <circle-progress
                                 [percent]="satisfaction"
                                 [radius]="100"
                                 [outerStrokeWidth]="16"
                                 [innerStrokeWidth]="8"
-                                [outerStrokeColor]="'#78C000'"
-                                [innerStrokeColor]="'#C7E596'"
+                                [outerStrokeColor]="outColorCust"
+                                [innerStrokeColor]="inColorCust"
                                 [animation]="true"
                                 [animationDuration]="300"></circle-progress>
+                                </div>
                                 <!-- <mat-progress-bar mode="determinate" [value]="satisfaction"
                                 style="height:80px"></mat-progress-bar> 
                                 <div > {{satisfaction}}% </div> -->
@@ -249,7 +253,7 @@
 
                     <div [formGroup]="date_data" class="example-full-width">
                         <mat-form-field class="col-3">
-                            <input matInput 
+                            <input matInput [min]="minDate1" [max]="maxDate1" [matDatepicker]="picker1"
                             placeholder="Select a Date" formControlName="date1" (dateInput)="getDate('date1', $event)" readonly>
                             <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
                             <mat-datepicker #picker1></mat-datepicker>
@@ -329,10 +333,10 @@
                                     <circle-progress
                                         [percent]="satisfactionKeyword"
                                         [radius]="160"
-                                        [outerStrokeWidth]="16"
+                                        [outerStrokeWidth]="26"
                                         [innerStrokeWidth]="8"
-                                        [outerStrokeColor]="'#78C000'"
-                                        [innerStrokeColor]="'#C7E596'"
+                                        [outerStrokeColor]="outColor"
+                                        [innerStrokeColor]="inColor"
                                         [subtitle]="subtitle"
                                         [animation]="true"
                                         [animationDuration]="300"></circle-progress>

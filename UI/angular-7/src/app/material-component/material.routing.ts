@@ -5,9 +5,9 @@ import { GridComponent } from './grid/grid.component';
 import { StepperComponent } from './stepper/stepper.component';
 import { ReviewComponent } from './review/review.component';
 import { BusinessComponent } from './business/business.component';
-import { ProgressSnipperComponent } from './progress-snipper/progress-snipper.component';
-import { ProgressComponent } from './progress/progress.component';
+
 import { DialogComponent } from './dialog/dialog.component';
+import { ThankYouPageComponent } from './thank-you-page/thank-you-page.component';
 
 export const MaterialRoutes: Routes = [
   {
@@ -31,15 +31,11 @@ export const MaterialRoutes: Routes = [
     component: ReviewComponent
   },
   {
-    path: 'progress-snipper',
-    component: ProgressSnipperComponent
-  },
-  {
-    path: 'progress',
-    component: ProgressComponent
-  },
-  {
     path: 'dialog',
     component: DialogComponent
+  },
+  {
+    path: 'thank-you-page',
+    component: ThankYouPageComponent
   }
 ];

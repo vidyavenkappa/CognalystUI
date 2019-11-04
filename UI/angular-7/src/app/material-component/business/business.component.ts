@@ -68,6 +68,16 @@ export class BusinessComponent {
     {value: 'month'},
   ];
   
+
+  //assign color
+  outColor=""
+  inColor=""
+  outColorAvg=""
+  inColorAvg=""
+  outColorCust=""
+  inColorCust=""
+
+
   selected = 'positive_cloud';
 
   allreviews:allReviews[]=[];
@@ -397,6 +407,30 @@ export class BusinessComponent {
            j++;
         }
         this.satisfactionAvg = total_score/(5*j)*100;
+        if(this.satisfactionAvg>=0 && this.satisfactionAvg<20)
+        {
+          this.outColorAvg='#ff0015'
+          this.inColorAvg='#ff606d'
+          
+        }
+        else if(this.satisfactionAvg>=20 && this.satisfactionAvg<50)
+        {
+          this.outColorAvg='#fd7800'
+          this.inColorAvg='#f8aa7e'
+          
+        }
+        else if(this.satisfactionAvg>=50 && this.satisfactionAvg<75)
+        {
+          this.outColorAvg='#FDB900'
+          this.inColorAvg='#f8d797'
+        }
+        else if(this.satisfactionAvg>=75 && this.satisfactionAvg<=100)
+        {
+          this.outColorAvg='#78C000'
+          this.inColorAvg='#C7E596'
+        }
+    
+
         
        
       },
@@ -410,6 +444,27 @@ export class BusinessComponent {
           
           
           this.satisfaction = data['satisfaction'];
+          if(this.satisfaction>=0 && this.satisfaction<20)
+          {
+            this.outColorCust='#ff0015'
+            this.inColorCust='#ff606d'
+            
+          }
+          else if(this.satisfaction>=20 && this.satisfaction<50)
+          {
+            this.outColorCust='#fd7800'
+            this.inColorCust='#f8aa7e'
+          }
+          else if(this.satisfaction>=50 && this.satisfaction<75)
+          {
+            this.outColorCust='#FDB900'
+            this.inColorCust='#f8d797'
+          }
+          else if(this.satisfaction>=75 && this.satisfaction<=100)
+          {
+            this.outColorCust='#78C000'
+            this.inColorCust='#C7E596'
+          }
           
          
         },
@@ -443,7 +498,7 @@ export class BusinessComponent {
           },
           curveType: 'function',
           legend: { position: 'bottom' },
-          explorer: {axis: 'horizontal', keepInBounds: true}
+          
         };
         this.width = 720;
         this.height = 400;
@@ -591,7 +646,7 @@ export class BusinessComponent {
   { 
     if(this.b_name!= undefined)
     {
-      //console.log({"b_name":this.b_name,"initial_date":this.date_data.get('date1').value, "final_date": this.date_data.get('date2').value})
+      console.log({"b_name":this.b_name,"initial_date":this.date_data.get('date1').value, "final_date": this.date_data.get('date2').value})
       this.dataService.postConfig(this.urlGetIntervalReviews,{"b_name":this.b_name,"initial_date":String(this.date_data.get('date1').value), "final_date": String(this.date_data.get('date2').value)}).subscribe(data =>
       {
         if(data==null)
@@ -622,7 +677,7 @@ export class BusinessComponent {
     {
       this.dataService.postConfig(this.urlGetSatisfactionData,{'b_name':this.b_name}).subscribe(data =>
       {
-      
+        console.log(data);
         var j=0;
         this.graphData=data;
         for(let i in this.graphData['data'])
@@ -661,6 +716,28 @@ export class BusinessComponent {
   getSatisfaction(keyword)
   {
     this.satisfactionKeyword = this.graphData['data'][keyword][0]
+    if(this.satisfactionKeyword>=0 && this.satisfactionKeyword<20)
+    {
+      this.outColor='#ff0015'
+      this.inColor='#ff606d'
+      
+    }
+    else if(this.satisfactionKeyword>=20 && this.satisfactionKeyword<50)
+    {
+      this.outColor='#fd7800'
+      this.inColor='#f8aa7e'
+      
+    }
+    else if(this.satisfactionKeyword>=50 && this.satisfactionKeyword<75)
+    {
+      this.outColor='#FDB900'
+      this.inColor='#f8d797'
+    }
+    else if(this.satisfactionKeyword>=75 && this.satisfactionKeyword<=100)
+    {
+      this.outColor='#78C000'
+      this.inColor='#C7E596'
+    }
     
   }
   getTopFivePosNeg(){

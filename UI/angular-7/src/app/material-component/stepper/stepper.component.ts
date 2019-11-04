@@ -28,7 +28,7 @@ export class StepperComponent implements OnInit {
       //console.log(this.allreview['data'])
       for (let i of this.allreview['data'])
       {
-        this.reviewData.push({"username":i['user'],"rating":i['predicted_rating'],"review":i['review']})
+        this.reviewData.push({"username":i['user'],"rating":i['predicted_rating'].toFixed(1),"review":i['review']})
       }
     },
     err => {

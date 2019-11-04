@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {DataService} from '../../shared/services/data.service';
 import { FormControl ,FormGroup, Validators} from "@angular/forms";
 import { StarRatingComponent } from 'ng-starrating';
-
+import { Router } from '@angular/router';
 
 
 
@@ -17,11 +17,11 @@ export class UserComponent {
   value_rating=0;
   b_name="Om Made Cafe"
   sendData={};
-  constructor(public dataService: DataService) {}
+  constructor(public dataService: DataService,private router: Router) {}
   
   ngOnInit(){
-  }  
-
+  }
+  
   
   
   urlReviews="http://localhost:5001/addreview"
@@ -36,9 +36,10 @@ export class UserComponent {
   writeReview()
   {
       console.log()
+      var review = this.review_form.get('review_control').value.replace("\n", " "); 
       this.sendData={
         "b_name":this.b_name,
-        "review": this.review_form.get('review_control').value,
+        "review": review,
         "user": this.review_form.get('username_control').value,
         "user_rating":this.review_form.get('rating_control').value,
         "date": this.review_form.get('date_control').value
@@ -46,9 +47,12 @@ export class UserComponent {
       console.log(this.sendData);
       this.dataService.postConfig(this.urlReviews,this.sendData).subscribe(data =>
       {
-        alert("Review Sucessfully created");
+        
         this.review_form.reset();
         this.value_rating=0;
+        this.router.navigate(['/thank-you-page'])
+        
+        
       },
       err => {
         console.log(err);
