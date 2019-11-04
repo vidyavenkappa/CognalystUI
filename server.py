@@ -50,9 +50,11 @@ def add_review():
     review = json.loads(request.data)['review']
     user = json.loads(request.data)['user']
     user_rating = json.loads(request.data)['user_rating']
-    # time = datetime.now()
-    final_date_1=format_dates(json.loads(request.data)['date'])
-    time = datetime.strptime(final_date_1,"%a, %d %b %Y %X GMT")
+    
+    #print(format_dates(json.loads(request.data)['date']))
+    
+    time=format_dates_review(json.loads(request.data)['date'])
+    print(time)
 
     document = {
                 "b_name" : b_name,
@@ -98,7 +100,7 @@ def add_review():
                 # keyword_score = relevancy_score*((senti_score+(pos1-neg1))/2)
                 keyword_score = relevancy_score*(senti_score)
                 review_rating+= keyword_score
-                time = datetime.now()
+                time = format_dates_review(json.loads(request.data)['date'])
                 kw_doc = {
                     "keyword" : i['text'],
                     "b_name" : b_name,
@@ -127,7 +129,11 @@ def add_review():
     reviews_collection.update_one({"_id":review_doc_id},{"$set": {"rating":review_rating,"predicted_rating":predicted_rating}},upsert=True)
     return jsonify({"status":"success"})
 
-
+def format_dates_review(date):
+    final_date = date.split('T')
+    new_date=' '.join(final_date)
+    print(new_date)
+    return new_date
 
 @app.route('/getallreviews', methods=['POST'])
 def get_all_reviews():
@@ -476,6 +482,7 @@ def get_negative_in_time_period():
 def format_dates(date):
     final_date = date.split('+')[0]
     new_date=final_date.split(' ')
+    print(new_date)
     final_date=new_date[0]+", "+new_date[2]+" "+new_date[1]+" "+new_date[3]+" "+"00:00:00 GMT"
     return final_date
 
