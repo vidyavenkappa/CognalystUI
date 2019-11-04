@@ -1,44 +1,58 @@
 <mat-card>
   <mat-card-content>    
   <mat-card-title>End-User View</mat-card-title>
-      <div mat-dialog-content> 
-      <form>
-          <mat-card style="width:1000px">
+      <div mat-dialog-content class="card text-center"> 
+          <mat-card style="width:100%">
             <mat-card-content style="padding:40px;"> 
-                <mat-card-title>Select the Domain</mat-card-title>
-                <mat-grid-list cols="4" rowHeight="100px">
-                  <mat-grid-tile
-                      *ngFor="let tile of tiles"
-                      [colspan]="tile.cols"
-                      [rowspan]="tile.rows"
-                      [style.background]="tile.color"
-                      (click) ="selected(tile.text)"
-                      style="padding:10px;margin:20px;border-radius: 20px">
-                    {{tile.text}}
-                  </mat-grid-tile>
-                </mat-grid-list>
+
+                <mat-card-title class="headerCard">Enter the Review</mat-card-title>
+                  <br>
+                  <br>
+                  <div class="example-container card text-center"style="background-color:#C7E596">
+                    <mat-card style="width:60%;align-content: center;left:20%" class="card align-items-center">
+                      <mat-card-content >
+                    <form [formGroup]="review_form" >
+                        <mat-icon class="icon">person</mat-icon> <mat-label style="padding:10px;">Enter the Username<sup>*</sup></mat-label>
+                      <br>
+                      <mat-form-field class="textBoxClass">
+                        
+                        <input matInput  formControlName="username_control">
+                      </mat-form-field>
+                      <br>
+                      <br>
+                      <mat-icon class="icon">edit</mat-icon><mat-label style="padding:10px;">Enter the Review<sup>*</sup></mat-label>
+                      <br>
+                      <mat-form-field class="textBoxClass">
+                        
+                        <textarea matInput  style="height:100px" formControlName="review_control"></textarea>
+                      </mat-form-field>
+                      <br>
+                      <br>
+                      <div >
+                      <mat-icon class="icon">star_half</mat-icon><mat-label style="padding:10px;">Select the Rating<sup>*</sup></mat-label><br>
+                      <br>
+                      <star-rating [value]="value_rating"  checkedcolor="#305D02" uncheckedcolor="#C7E596" size="24px"   readonly="false" (rate)="onRate($event)" ></star-rating>
+                      </div>
+                      <br>
+                      <br>
+                      <mat-icon class="icon">date_range</mat-icon><mat-label  class="textBoxClass" style="padding:10px;color:black;align-content: center">Select the Date<sup>*</sup></mat-label><br>
+                      <mat-form-field class="textBoxClass">
+                          <input matInput [matDatepicker]="picker" formControlName="date_control" readonly>
+                          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                      <br>
+                      <br>
+                      <button mat-raised-button (click)="writeReview()"
+                      [disabled]="!review_form.valid"  [ngClass] = "{button:review_form.valid,errorButton:!review_form.valid}">Submit</button>
+                    </form>
+                  </mat-card-content>
+                  </mat-card>
+                  </div>
+                    
               </mat-card-content>
             </mat-card>
-            <mat-card style="width:1000px">
-              <mat-card-content style="padding:40px;"> 
-                <mat-card-title>Select the Item</mat-card-title>
-                <mat-grid-list cols="4" rowHeight="100px">
-                  <mat-grid-tile
-                      *ngFor="let option of dataItem"
-                      [colspan]="option.cols"
-                      [rowspan]="option.rows"
-                      [style.background]="option.color"
-                      (click)="writeReview(option.text)"
-                      style="padding:10px;margin-right:20px;border-radius: 20px"
-                      >
-                    {{option.text}}
-                  </mat-grid-tile>
-                </mat-grid-list>
-              </mat-card-content>
-            </mat-card>
-        </form>
-        <div class="col-md-4"  *ngIf="review" style="font-size: 16px;position:relative;display: inline-block;box-sizing: border-box;font-size: 16px;height:35px;right:20px;padding:10px">{{result}}
-        </div> 
-      </div>
+          </div>
+            
   </mat-card-content>
 </mat-card>

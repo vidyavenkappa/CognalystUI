@@ -14,26 +14,23 @@ import { MaterialRoutes } from './material.routing';
 import { UserComponent } from './user/user.component';
 
 import { GridComponent } from './grid/grid.component';
-import { ListsComponent } from './lists/lists.component';
-import { MenuComponent } from './menu/menu.component';
-import { TabsComponent } from './tabs/tabs.component';
+
 import { StepperComponent } from './stepper/stepper.component';
 import { ReviewComponent } from './review/review.component';
 import { BusinessComponent } from './business/business.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ProgressSnipperComponent } from './progress-snipper/progress-snipper.component';
 import { ProgressComponent } from './progress/progress.component';
 import {DialogComponent} from './dialog/dialog.component';
-import { TooltipComponent } from './tooltip/tooltip.component';
-import { SnackbarComponent } from './snackbar/snackbar.component';
-import { SliderComponent } from './slider/slider.component';
-import { SlideToggleComponent } from './slide-toggle/slide-toggle.component';
+
 import { GoogleChartsModule } from 'angular-google-charts';
 import { SelectModule } from 'ng2-select';
 import {MatInputModule, MatFormFieldModule} from '@angular/material';
 import {AgWordCloudModule} from 'angular4-word-cloud';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { TagCloudModule } from 'angular-tag-cloud-module';
+
+import { NgCircleProgressModule } from 'ng-circle-progress';
+import { RatingModule } from 'ng-starrating';
  
 @NgModule({
   imports: [
@@ -52,7 +49,18 @@ import { TagCloudModule } from 'angular-tag-cloud-module';
     GoogleChartsModule,
     AgWordCloudModule.forRoot(),
     MatDatepickerModule,
-    TagCloudModule
+    TagCloudModule,
+    NgCircleProgressModule.forRoot({
+      "radius": 60,
+      "outerStrokeWidth": 40,
+      "innerStrokeWidth": 5,
+      "showBackground": false,
+      "startFromZero": false,
+      "subtitleFontSize":"14",
+      "titleFontSize":"25",
+      "subtitle":["Satisfied"]
+    }),
+    RatingModule
  
   ],
   providers: [],
@@ -61,19 +69,11 @@ import { TagCloudModule } from 'angular-tag-cloud-module';
     UserComponent,
     BusinessComponent,
     GridComponent,
-    ListsComponent,
-    MenuComponent,
-    TabsComponent,
     StepperComponent,
     ReviewComponent,
-    ToolbarComponent,
     ProgressSnipperComponent,
     ProgressComponent,
-    DialogComponent,
-    TooltipComponent,
-    SnackbarComponent,
-    SliderComponent,
-    SlideToggleComponent
+    DialogComponent
   ]
 })
 export class MaterialComponentsModule {}

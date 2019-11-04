@@ -20,28 +20,50 @@
             
             <div fxLayout="row"  fxLayoutGap="12px"  [style.margin-top]="'12px'" >
                 <div fxLayout="column" >
-                    <mat-card class="example-card card" style="width: 820px;height: 50% ">
+                    <div fxLayout="row">
+                    <mat-card class="example-card card" style="width: 400px;height: 90% ">
                         <mat-card-content>
                             <mat-card-title>
-                                AVAERAGE CUSTOMER SATISFACTION         
+                                AVERAGE CUSTOMER SATISFACTION         
                             </mat-card-title>
                             <br>
-                            <mat-progress-bar mode="determinate" [value]="satisfactionAvg"
-                            style="height:80px"></mat-progress-bar> 
-                            <div > {{satisfactionAvg}}%</div>
+                            <!-- <mat-progress-spinner mode="determinate" [value]="satisfactionAvg">{{satisfactionAvg}}%</mat-progress-spinner> 
+                            <div > </div> -->
+                            <circle-progress
+                                [percent]="satisfactionAvg"
+                                [radius]="100"
+                                [outerStrokeWidth]="16"
+                                [innerStrokeWidth]="8"
+                                [outerStrokeColor]="'#78C000'"
+                                [innerStrokeColor]="'#C7E596'"
+                                [animation]="true"
+                                [animationDuration]="300"
+                                ></circle-progress>
+
                         </mat-card-content>
                     </mat-card>
-                    <mat-card class="example-card card" style="width: 820px;height: 50% ">
+                    <mat-card class="example-card card" style="width: 400px;height: 90% ">
                             <mat-card-content>
                                 <mat-card-title>
                                     OVERALL CUSTOMER SATISFACTION         
                                 </mat-card-title>
                                 <br>
-                                <mat-progress-bar mode="determinate" [value]="satisfaction"
+                                <circle-progress
+                                [percent]="satisfaction"
+                                [radius]="100"
+                                [outerStrokeWidth]="16"
+                                [innerStrokeWidth]="8"
+                                [outerStrokeColor]="'#78C000'"
+                                [innerStrokeColor]="'#C7E596'"
+                                [animation]="true"
+                                [animationDuration]="300"></circle-progress>
+                                <!-- <mat-progress-bar mode="determinate" [value]="satisfaction"
                                 style="height:80px"></mat-progress-bar> 
-                                <div > {{satisfaction}}% </div>
+                                <div > {{satisfaction}}% </div> -->
                             </mat-card-content>
                         </mat-card>
+                    </div>
+                    
                     
                         <mat-card class=" card text-center" style="width:820px;height:40%;" >
                             <mat-card-content >
@@ -184,6 +206,12 @@
                     <mat-card-title>WHAT DO YOUR CUSTOMERS THINK ABOUT YOU?</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
+                        <mat-form-field>
+                            <mat-select matNativeControl required placeholder="Select Positive/Negative Cloud" >
+                                <mat-option value="positive_cloud" (click) = "wordCloudPos()">Positive Cloud</mat-option>
+                                <mat-option value="negative_cloud" (click) = "wordCloudNeg()">Negative Cloud</mat-option>
+                            </mat-select>
+                        </mat-form-field>
                        
                     <!-- <div AgWordCloud 
                     #word_cloud_chart=ag-word-cloud 
@@ -283,16 +311,32 @@
                         </mat-card-title>
                         <br>
                         <div fxLayout="row">
-                            <mat-card class="card " style="width:700px;overflow-y:auto;height:350px;">
-                            <div *ngFor="let keyword of dataItems" style="text-align:center;font-size:24px">
-                                <button   (click)="getSatisfaction(keyword)" style="margin-bottom:10px;border-radius: 20px">{{keyword}}</button>
-                            </div>
+                            <mat-card class="card" style="width:800px;height:370px; vertical-align: middle;">
+                                <div class="container" style="height:90%;background-color:white;width:90%;margin-top:2%;margin-bottom:1%;margin-left:5%;margin-right:5%">
+                                    <div *ngFor="let keyword of dataItems" class="row" >
+                                        <div style="margin-top:10%">
+                                            <button mat-raised-button color="accent" (click)="getSatisfaction(keyword)" style="border-radius: 10px;width:200px;">{{keyword}}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            
                             </mat-card>
                             <div >
-                                <div style="margin:90px;height:350px;" fxLayout="row" >
-                                    <mat-progress-bar class="progress vertical progress-bar-success bg-success" mode="determinate" [value]="satisfactionKeyword" [color]="accent"
+                                <div style="height:350px;margin-left:30%" fxLayout="row" >
+                                    <!-- <mat-progress-bar class="progress vertical progress-bar-success bg-success" mode="determinate" [value]="satisfactionKeyword" [color]="accent"
                                         style="height:200px;width:350px;"></mat-progress-bar> 
-                                    <div > {{satisfactionKeyword}}% liked this attribute</div>
+                                    <div > {{satisfactionKeyword}}% liked this attribute</div> -->
+                                    <circle-progress
+                                        [percent]="satisfactionKeyword"
+                                        [radius]="160"
+                                        [outerStrokeWidth]="16"
+                                        [innerStrokeWidth]="8"
+                                        [outerStrokeColor]="'#78C000'"
+                                        [innerStrokeColor]="'#C7E596'"
+                                        [subtitle]="subtitle"
+                                        [animation]="true"
+                                        [animationDuration]="300"></circle-progress>
+
                                 </div>
                             </div>
                         </div>                  

@@ -6,9 +6,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 html, body { height: 100%;overflow-y: scroll; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
 
-mat-progress-bar .mat-progress-bar-buffer {
-    background: #ed2939;   
+/* mat-progress-bar .mat-progress-bar-buffer {
+    background: #eca4a2;   
 }
 mat-progress-bar .mat-progress-bar-fill::after {
     background: #28a745;   
-}
+} */

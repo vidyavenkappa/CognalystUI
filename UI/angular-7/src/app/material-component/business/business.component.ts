@@ -41,7 +41,8 @@ export class BusinessComponent {
   urlGetPosWordCloud = "http://localhost:5001/getallpositivewordcloud";
   urlGetIntervalReviews = "http://localhost:5001/getnegativeintimeperiod";
   urlGetSatisfactionData = "http://localhost:5001/allratios";
-  urlGetWordCloud="http://localhost:5001/getallpositivewithscores";
+  urlGetWordCloudPos="http://localhost:5001/getallpositivewithscores";
+  urlGetWordCloudNeg="http://localhost:5001/getallnegativewithscores";
   urlGetReviewsOverTime ="http://localhost:5001/getallreviewssortedovertime";
   urlGetOverallSatisfaction="http://localhost:5001/getoverallsatisfaction";
   urlGetAllKeywords="http://localhost:5001/getrecentkeywords";
@@ -49,6 +50,7 @@ export class BusinessComponent {
   satisfactionAvg:number;
   satisfaction:number;
   graphData={};
+  subtitle="liked this Attribute"
   //b_name='Metro Points Hotel-Washington North';
   b_name='Om Made Cafe';
   businesses= [
@@ -85,6 +87,7 @@ export class BusinessComponent {
   satisfactionKeyword:Number;
   reviewInterval=[];
 
+  cloud_control = new FormControl("positive_cloud")
 
   title:String;
   type="LineChart";
@@ -437,10 +440,12 @@ export class BusinessComponent {
             title: 'Ratings'
           },
           curveType: 'function',
-          legend: { position: 'bottom' }
+          legend: { position: 'bottom' },
+          explorer: {axis: 'horizontal', keepInBounds: true}
         };
         this.width = 720;
         this.height = 400;
+        
         //console.log(this.graphData);
         for(let i=0;i<this.graphData['data'].length;i++)
         {
@@ -453,6 +458,7 @@ export class BusinessComponent {
           
           j++; 
         }
+        
         //console.log(this.data);
         this.columnNames[0]= "Reviews";
         this.columnNames[1]= "predicted_rating";
@@ -515,30 +521,65 @@ export class BusinessComponent {
   {
     if(this.b_name!= undefined)
     {
-     
-      this.dataService.postConfig(this.urlGetWordCloud,{'b_name':this.b_name}).subscribe(data =>
-      {
-        this.wordDataPosObj=data;
-        
-        this.wordData=this.wordDataPosObj['data'];
-        let j=0;
-        
-        for(let i in this.wordData)
+      this.dataService.postConfig(this.urlGetWordCloudPos,{'b_name':this.b_name}).subscribe(data =>
         {
-            this.wordDataPos[j]={weight:this.wordData[i][1],text:this.wordData[i][0],color:this.colors[j%6]};
-            j++;
-        }
-        
-        this.optionsCloud= {
-          // if width is between 0 and 1 it will be set to the size of the upper element multiplied by the value 
-          width: 1000,
-          height: 400,
-          overflow: false,
-        };
-      },
-      err => {
-        console.log(err);
-      });
+          this.wordDataPosObj=data;
+          
+          this.wordData=this.wordDataPosObj['data'];
+          let j=0;
+          
+          for(let i in this.wordData)
+          {
+              this.wordDataPos[j]={weight:this.wordData[i][1],text:this.wordData[i][0],color:this.colors[j%6]};
+              j++;
+          }
+          
+          this.optionsCloud= {
+            // if width is between 0 and 1 it will be set to the size of the upper element multiplied by the value 
+            width: 1000,
+            height: 400,
+            overflow: false,
+          };
+        },
+        err => {
+          console.log(err);
+        });
+      
+      
+    }
+    else{
+      alert('Select the business Name');
+    }
+  }
+  wordCloudNeg()
+  {
+    if(this.b_name!= undefined)
+    {
+      this.dataService.postConfig(this.urlGetWordCloudNeg,{'b_name':this.b_name}).subscribe(data =>
+        {
+          this.wordDataPosObj=data;
+          
+          this.wordData=this.wordDataPosObj['data'];
+          let j=0;
+          
+          for(let i in this.wordData)
+          {
+              this.wordDataPos[j]={weight:this.wordData[i][1],text:this.wordData[i][0],color:this.colors[j%6]};
+              j++;
+          }
+          
+          this.optionsCloud= {
+            // if width is between 0 and 1 it will be set to the size of the upper element multiplied by the value 
+            width: 1000,
+            height: 400,
+            overflow: false,
+          };
+        },
+        err => {
+          console.log(err);
+        });
+      
+      
     }
     else{
       alert('Select the business Name');

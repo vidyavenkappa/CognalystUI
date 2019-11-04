@@ -1,30 +1,11 @@
 import { Component } from '@angular/core';
 import {DataService} from '../../shared/services/data.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component';
-//import { takeWhile } from 'rxjs/operators';
-
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
-}
-
-export interface DialogData {
-  username: string;
-  review:string;
-  item:string;
-  rating:number;
-}
+import { FormControl ,FormGroup, Validators} from "@angular/forms";
+import { StarRatingComponent } from 'ng-starrating';
 
 
-export interface Data {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
-}
+
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -32,79 +13,49 @@ export interface Data {
 })
 export class UserComponent {
   
-  tiles: Tile[] = [
-    {text: 'RESTAURANTS', cols: 1, rows: 1, color: '#ffc107'},
-    {text: 'NETWORKING COMPANIES', cols: 1, rows: 1, color: '#007bff'}
-  ];
-  dataItem: Data[]=[];
-  result={};
-  review:string;
-  item:string;
-  username: string;
-  rating:number;
+  
+  value_rating=0;
+  b_name="Om Made Cafe"
   sendData={};
-  constructor(public dataService: DataService,public dialog: MatDialog) {}
+  constructor(public dataService: DataService) {}
   
   ngOnInit(){
-    
-    //this.getData();
   }  
-  //dataItem=[];
-  
-  domain:String;
-  animal: string;
-  name: string
-  urlReviews="http://localhost:5001/addreview"
-  
-  //function to obtain the selected option
-  public selected(value) {
-    //console.log('Selected value is: ', value.text);
-    
 
-    if(value == "RESTAURANTS")
-    {
-      this.dataItem[0]={text: 'Om Made Cafe', cols: 1, rows: 1, color: '#dc3545'};
-      this.dataItem[1]={text: 'hall in the wall', cols: 1, rows: 1, color: '#28a745'};
-    }
-    else if(value == "NETWORKING COMPANIES")
-    {
-      this.dataItem[0]={text: 'cisco', cols: 1, rows: 1, color: '#dc3545'};
-      this.dataItem[1]={text: 'aruba', cols: 1, rows: 1, color: '#28a745'};
-      
-    }
-    
-  }
- 
-  writeReview(item)
+  
+  
+  urlReviews="http://localhost:5001/addreview"
+  review_form = new FormGroup({
+    username_control: new FormControl("", Validators.required),
+    review_control: new FormControl("", Validators.required),
+    rating_control: new FormControl("", Validators.required),
+    date_control: new FormControl("", Validators.required)
+  });
+
+  //function to create Review
+  writeReview()
   {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '500px',
-      height:'auto',
-      panelClass: 'alert-message-style',
-      data:{review:this.review,item:item,username:this.username,rating:this.rating}
-    });
-    
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      this.result=result;
+      console.log()
       this.sendData={
-        "b_name":item,
-        "review": this.result['review'],
-        "user": this.result['username'],
-        "user_rating":this.result['rating']
+        "b_name":this.b_name,
+        "review": this.review_form.get('review_control').value,
+        "user": this.review_form.get('username_control').value,
+        "user_rating":this.review_form.get('rating_control').value,
+        "date": this.review_form.get('date_control').value
       };
       console.log(this.sendData);
       this.dataService.postConfig(this.urlReviews,this.sendData).subscribe(data =>
-        {
-          
-          
-        },
-        err => {
-          console.log(err);
-        });
-        
-    });
+      {
+        alert("Review Sucessfully created");
+        this.review_form.reset();
+        this.value_rating=0;
+      },
+      err => {
+        console.log(err);
+      });
   }
-
-
+  onRate($event:{oldValue:number, newValue:number, starRating:StarRatingComponent}) {
+    this.value_rating=$event.newValue;
+    this.review_form.patchValue({rating_control:$event.newValue});
+  }
 }
