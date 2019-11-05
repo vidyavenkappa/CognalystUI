@@ -21,7 +21,7 @@
             <div fxLayout="row"  fxLayoutGap="12px"  [style.margin-top]="'12px'" >
                 <div fxLayout="column" >
                     <div fxLayout="row">
-                    <mat-card class="example-card card align-items-center" style="width: 400px;height: 90%;">
+                    <mat-card class="card align-items-center" style="width: 400px;height: 90%;">
                         <mat-card-content  >
                             <mat-card-title>
                                 AVERAGE CUSTOMER SATISFACTION         
@@ -44,7 +44,7 @@
 
                         </mat-card-content>
                     </mat-card>
-                    <mat-card class="example-card card " style="width: 400px;height: 90%">
+                    <mat-card class="card align-items-center " style="width: 400px;height: 90%">
                             <mat-card-content>
                                 <mat-card-title>
                                     OVERALL CUSTOMER SATISFACTION         
@@ -69,7 +69,7 @@
                     </div>
                     
                     
-                        <mat-card class=" card text-center" style="width:820px;height:40%;" >
+                        <mat-card class=" card text-center" style="width:820px;height:23%;" >
                             <mat-card-content >
                                 <button mat-button (click)="getAllReviews()" class=" card  bg-warning col-5 " style="height:60px;border-radius:20px;margin:10px" >All Reviews</button>
                                 
@@ -81,17 +81,17 @@
                             </mat-card-content>
                             
                         </mat-card>
-                    <div fxLayout="row" fxLayoutGap="12px"  [style.margin-left]="'13px'" [style.margin-top]="'12px'" [style.width]="'820px'" >
-                        <mat-expansion-panel (opened)="panelOpenState = false" (closed)="panelOpenState = true" class="example-card card text-white bg-primary" style="width:100%;"
+                    <div fxLayout="row" fxLayoutGap="12px"  [style.width]="'850px'" >
+                        <mat-card  class=" bg-primary" style="width:90%;height:100%;"
                             align-content="center">
                             <br>
                             <br>
-                            <mat-expansion-panel-header >
-                                <mat-panel-title>Highlights for a given Time Frame
-                                </mat-panel-title>
+                            <mat-card-header >
+                                <div>Highlights for a given Time Frame
+                                </div>
                         
-                            </mat-expansion-panel-header>
-                        
+                            </mat-card-header>
+                            <mat-card-content>
                             <mat-form-field [formGroup]="keyword_pos_data">
                                 <mat-label>Select the time frame</mat-label>
                                 <mat-select [(ngModel)]="timepos" name="time_frame" formControlName="tframe_pos"  >
@@ -100,109 +100,142 @@
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
-                            <p style="white-space: pre-wrap;">{{allKeywordsPos}}</p>
-                        </mat-expansion-panel>
+                            <div class ="example-card" style="height:220px;">
+                                <ul class="list-group list-group-flush " *ngFor="let item of allKeywordsPosArr">
+                                        <li class="list-group-item " style="color:darkblue;text-align: center" >{{item}}</li>
+                                </ul>
+                            </div>
+                        </mat-card-content>
+            
+                        </mat-card>
                     
-                        <mat-expansion-panel (opened)="panelOpenState = false" (closed)="panelOpenState = true" class="example-card  card text-white bg-success" style="width:100%;"
+                        <mat-card  class=" bg-success" style="width:90%;height:100%;"
                             align-content="center">
                             <br>
                             <br>
-                            <mat-expansion-panel-header >
-                                <mat-panel-title>Issues for a given Time Frame
-                                </mat-panel-title>
+                            <mat-card-header >
+                                <div>Issues for a given Time Frame
+                                </div>
                         
-                            </mat-expansion-panel-header>
-                    
-                            <mat-form-field [formGroup]="keyword_neg_data">
-                                <mat-label>Select the time frame</mat-label>
-                                <mat-select [(ngModel)]="timeneg" name="time_frame" formControlName="tframe_neg" >
-                                    <mat-option *ngFor="let time of time_frame" [value]="time.value" (click)="selectNegTimeFrame(time.value)">
-                                        {{time.value}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                            <p style="white-space: pre-wrap;">{{allKeywordsNeg}}</p>
-                        
-                        </mat-expansion-panel>
-                                
-                       
+                            </mat-card-header>
+                            <mat-card-content>
+                                    <mat-form-field [formGroup]="keyword_neg_data">
+                                            <mat-label>Select the time frame</mat-label>
+                                            <mat-select [(ngModel)]="timeneg" name="time_frame" formControlName="tframe_neg" >
+                                                <mat-option *ngFor="let time of time_frame" [value]="time.value" (click)="selectNegTimeFrame(time.value)">
+                                                    {{time.value}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                        <div class ="example-card" style="height:220px;">
+                                            <ul class="list-group list-group-flush example-card " *ngFor="let item of allKeywordsNegArr">
+                                                    <li class="list-group-item " style="color:green;text-align: center" >{{item}}</li>
+                                            </ul>
+                                        </div>
+                        </mat-card-content>
+            
+                        </mat-card>
                         
                         
                     </div>
 
                 </div>
-                
-                <mat-card class="card "  >
-                    <mat-card-content>
-                        <mat-card-title>
-                            Graph of all Reviews over time
-                        </mat-card-title>
-                        <br>
-                        <google-chart #chart
-                        [title]="title"
-                        [type]="type"
-                        [data]="data"
-                        [columnNames]="columnNames"
-                        [options]="options"
-                        [width]="width"
-                        [height]="height">
-                        </google-chart>
-                                            
-                    </mat-card-content>
-                </mat-card>
+                <div fxLayout="column" >
+                    <mat-card class="card "  >
+                        <mat-card-content>
+                            <mat-card-title>
+                                Graph of all Reviews over time
+                            </mat-card-title>
+                            <br>
+                            <google-chart #chart
+                            [title]="title"
+                            [type]="type"
+                            [data]="data"
+                            [columnNames]="columnNames"
+                            [options]="options"
+                            [width]="width"
+                            [height]="height">
+                            </google-chart>
+                                                
+                        </mat-card-content>
+                    </mat-card>
+                    <mat-card class="card "  >
+                        <mat-card-content>
+                            <mat-card-title>
+                                TRENDS OBSERVED
+                            </mat-card-title>
+                            <br>
+                        
+                            <google-chart #chart
+                            [title]="titleHist"
+                            [type]="typeHist"
+                            [data]="dataHist"
+                            [columnNames]="columnNamesHist"
+                            [options]="optionsHist"
+                            [width]="widthHist"
+                            [height]="heightHist">
+                            </google-chart>
+                            
+                                        
+                        </mat-card-content>
+                    </mat-card>
+                </div>
             </div>
             
             <div fxLayout="row"  fxLayoutGap="12px"  [style.margin-top]="'12px'" [style.margin-right]="'12px'" [style.margin-left]="'12px'">  
-            <mat-expansion-panel (opened)="panelOpenState = false" (closed)="panelOpenState = true" class="example-card  card text-white bg-danger " style="width:800px;margin-left:10px;margin-top:10px;margin-bottom:10px"
-                align-content="center">
-            
-                <br>
-                <br>
-                <mat-expansion-panel-header >
-                    <mat-panel-title>Most Recent Positive Reviews</mat-panel-title>
-            
-                </mat-expansion-panel-header>
-                <div *ngFor="let item of positiveReviews" class="card-deck">
-                    <mat-card class="example-card " style="width:100%">
-                        <mat-card-header>
-                    
-                          <div mat-card-avatar class="example-header-image" style="background-image: url('{{item.logo}}')"></div>
-                          <mat-card-title>{{item.username}}</mat-card-title>
-                          <mat-card-subtitle>Rating: {{item.rating}}</mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <p style="white-space: pre-wrap;">{{item.review}}</p>
-                        </mat-card-content>
-                        
-                    </mat-card>
-                </div>
-            </mat-expansion-panel>
+                <mat-expansion-panel (opened)="panelOpenState = false" (closed)="panelOpenState = true" class=" card text-white bg-danger " style="width:800px;margin-left:10px;margin-top:10px;margin-bottom:10px"
+                    align-content="center">
+                
+                    <br>
+                    <br>
+                    <mat-expansion-panel-header >
+                        <mat-panel-title>Most Recent Positive Reviews</mat-panel-title>
+                
+                    </mat-expansion-panel-header>
+                    <div class ="example-card" style="height:450px;">
+                        <div *ngFor="let item of positiveReviews" >
+                            <mat-card class="example-card " style="width:100%">
+                                <mat-card-header>
+                            
+                                    <div mat-card-avatar class="example-header-image" style="background-image: url('{{item.logo}}')"></div>
+                                    <mat-card-title>{{item.username}}</mat-card-title>
+                                    <mat-card-subtitle>Rating: {{item.rating}}</mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <p style="white-space: pre-wrap;">{{item.review}}</p>
+                                </mat-card-content>
+                                
+                            </mat-card>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
 
 
 
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="example-card  card text-white bg-warning " style="width:800px;"
-                align-content="center">
-                <br>
-                <br>
-                <mat-expansion-panel-header >
-                    <mat-panel-title>Most Recent Negative Reviews</mat-panel-title>
-                </mat-expansion-panel-header>
-            
-                <div *ngFor="let item of negativeReviews" > 
-                <mat-card class="example-card " style="width:100%">
-                    <mat-card-header>
-                        <div mat-card-avatar class="example-header-image" ></div>
-                        <mat-card-title>{{item.username}}</mat-card-title>
-                        <mat-card-subtitle>Rating: {{item.rating}}</mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <p style="white-space: pre-wrap;">{{item.review}}</p>
-                    </mat-card-content>
-                    
-                </mat-card>
-                </div>
-            </mat-expansion-panel>
-        </div>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="  card text-white bg-warning " style="width:800px;"
+                    align-content="center">
+                    <br>
+                    <br>
+                    <mat-expansion-panel-header >
+                        <mat-panel-title>Most Recent Negative Reviews</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class ="example-card" style="height:450px;">
+                        <div *ngFor="let item of negativeReviews" > 
+                            <mat-card class="example-card " style="width:100%">
+                                <mat-card-header>
+                                    <div mat-card-avatar class="example-header-image" style="background-image: url('{{item.logo}}')"></div>
+                                    <mat-card-title>{{item.username}}</mat-card-title>
+                                    <mat-card-subtitle>Rating: {{item.rating}}</mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <p style="white-space: pre-wrap;">{{item.review}}</p>
+                                </mat-card-content>
+                                
+                            </mat-card>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </div>
         
         <div fxLayout="row" >
             <mat-card class="example-card card" style="width: 1200px;">
@@ -287,26 +320,7 @@
             </mat-card>
            
             
-            <mat-card class="card "  >
-                <mat-card-content>
-                    <mat-card-title>
-                        TRENDS OBSERVED
-                    </mat-card-title>
-                    <br>
-                   
-                    <google-chart #chart
-                    [title]="titleHist"
-                    [type]="typeHist"
-                    [data]="dataHist"
-                    [columnNames]="columnNamesHist"
-                    [options]="optionsHist"
-                    [width]="widthHist"
-                    [height]="heightHist">
-                    </google-chart>
-                    
-                               
-                </mat-card-content>
-            </mat-card>
+            
             <mat-card class="card " style="height:500px" >
                     <mat-card-content>
                         <mat-card-title>

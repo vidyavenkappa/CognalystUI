@@ -248,11 +248,8 @@ export class BusinessComponent {
         }
 
         var unique = this.allKeywordsPosArr.filter( this.onlyUnique );
-        for(let i in unique)
-        {
-          this.allKeywordsPos = this.allKeywordsPos+j+". "+ unique[i]+"\n";
-          j++;
-        }
+        this.allKeywordsPosArr = unique;
+        
       },
       err => {
         console.log(err);
@@ -284,11 +281,7 @@ export class BusinessComponent {
         this.allKeywordsNegArr = this.allKeywordsNegArr.filter(item => this.allKeywordsPos.indexOf(item) < 0);
 
         var unique = this.allKeywordsNegArr.filter( this.onlyUnique );
-        for(let i in unique)
-        {
-          this.allKeywordsNeg = this.allKeywordsNeg+j+". "+ unique[i]+"\n";
-          j++;
-        }
+        this.allKeywordsNegArr=unique;
 
       },
       err => {
@@ -469,7 +462,7 @@ export class BusinessComponent {
 
         };
         this.width = 720;
-        this.height = 400;
+        this.height = 450;
 
         //console.log(this.graphData);
         for(let i=0;i<this.graphData['data'].length;i++)
@@ -744,7 +737,7 @@ export class BusinessComponent {
           explorer: {axis: 'horizontal'}
         };
         this.widthHist = 720;
-        this.heightHist = 400;
+        this.heightHist = 450;
         //console.log(this.graphData);
         for(let i=0;i<this.graphData['data'].length;i++)
         {
