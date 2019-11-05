@@ -457,8 +457,7 @@ export class BusinessComponent {
           vAxis:{
             title: 'Ratings'
           },
-          curveType: 'function',
-          legend: { position: 'bottom' },
+          
 
         };
         this.width = 720;
