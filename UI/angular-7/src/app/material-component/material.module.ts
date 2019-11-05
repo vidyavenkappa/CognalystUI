@@ -30,7 +30,8 @@ import { TagCloudModule } from 'angular-tag-cloud-module';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { RatingModule } from 'ng-starrating';
 import { ThankYouPageComponent } from './thank-you-page/thank-you-page.component';
- 
+import { MeritsComponent} from './merits/merits.component';
+import { ConcernsComponent} from './concerns/concerns.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -71,7 +72,9 @@ import { ThankYouPageComponent } from './thank-you-page/thank-you-page.component
     StepperComponent,
     ReviewComponent,
     DialogComponent,
-    ThankYouPageComponent
+    ThankYouPageComponent,
+    MeritsComponent,
+    ConcernsComponent
   ]
 })
 export class MaterialComponentsModule {}

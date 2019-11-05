@@ -27,7 +27,7 @@ export interface allReviews{
 
 export class BusinessComponent {
 
-  
+
   panelOpenState = false;
 
   urlGetAllReviews="http://localhost:5001/getallreviews";
@@ -67,7 +67,7 @@ export class BusinessComponent {
     {value: 'fortnight'},
     {value: 'month'},
   ];
-  
+
 
   //assign color
   outColor=""
@@ -154,14 +154,14 @@ export class BusinessComponent {
     date1 : new FormControl(),
     date2 : new FormControl()
   })
-  
+
   minDate1 = new Date(2000, 0, 1);
   maxDate1 = new Date(2020, 0, 1);
   minDate2 = new Date(2000, 0, 1);
   maxDate2 = new Date(2020, 0, 1);
 
   constructor(public dataService: DataService,public dialog: MatDialog,private router: Router) {}
-  
+
 
   ngOnInit(){
     this.graphPredictedVSUserRating();
@@ -180,10 +180,10 @@ export class BusinessComponent {
     this.allReview='';
     if(this.b_name!= undefined)
     {
-      
-        
+
+
         this.router.navigate(['/stepper'])
-      
+
     }
     else{
       alert('Select the business Name');
@@ -194,33 +194,24 @@ export class BusinessComponent {
     this.allReview='';
     if(this.b_name!= undefined)
     {
+
       
-      this.dataService.postConfig(this.urlGetAllPositiveKeywords,{'b_name':this.b_name}).subscribe(data =>
-        {
-          this.review=data;
-          var j=1;
-          for (let i of this.review['data'])
-          {
-              this.allReview = this.allReview+j+". "+ i['keyword']+"\n\n";
-              j++;
-          }
+
+          // const dialogRef = this.dialog.open(ReviewComponent, {
+          //   width: '500px',
+          //   height:'auto',
+
+          //   panelClass: 'alert-message-style',
+          //   data:{review:this.allReview,title:"All Positive Keywords"}
+          // });
+
+          // dialogRef.afterClosed().subscribe(result => {
+
+          // });
+          this.router.navigate(['/merits'])
           
-          const dialogRef = this.dialog.open(ReviewComponent, {
-            width: '500px',
-            height:'auto',
-           
-            panelClass: 'alert-message-style',
-            data:{review:this.allReview,title:"All Positive Keywords"}
-          });
-          
-          dialogRef.afterClosed().subscribe(result => {
-            
-          });
-        
-        },
-        err => {
-          console.log(err);
-        });
+      
+       
       }
       else{
         alert('Select the business Name');
@@ -232,40 +223,17 @@ export class BusinessComponent {
 
     if(this.b_name!= undefined)
     {
-      this.dataService.postConfig(this.urlGetAllNegativeKeywords,{'b_name':this.b_name}).subscribe(data =>
-      {
-        this.review=data;
-        var j=1;
-        for (let i of this.review['data'])
-        {
-            this.allReview = this.allReview+j+". "+ i['keyword']+"\n\n";
-            j++;
-        }
-       
-        const dialogRef = this.dialog.open(ReviewComponent, {
-          width: '500px',
-          height:'auto',
-          panelClass: 'alert-message-style',
-          data:{review:this.allReview,title:"All Negative Keywords"}
-        });
-        
-        dialogRef.afterClosed().subscribe(result => {
-          
-        });
-      },
-      err => {
-        console.log(err);
-      });
+      this.router.navigate(['/concerns'])
     }
     else{
       alert('Select the business Name');
     }
-  
-  } 
+
+  }
   getPositiveKeywords()
   {
     this.allKeywordsPos='';
-    
+
     if(this.b_name!= undefined)
     {
       //console.log(this.timepos);
@@ -276,9 +244,9 @@ export class BusinessComponent {
         for (let i of this.keywords['data'])
         {
             this.allKeywordsPosArr.push(i['keyword']);
-            
+
         }
-        
+
         var unique = this.allKeywordsPosArr.filter( this.onlyUnique );
         for(let i in unique)
         {
@@ -294,16 +262,16 @@ export class BusinessComponent {
       alert('Select the business Name');
     }
   }
-  onlyUnique(value, index, self) { 
+  onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
   }
   getNegativeKeywords()
   {
     this.allKeywordsNeg='';
-    
+
     if(this.b_name!= undefined)
     {
-     
+
       this.dataService.postConfig(this.urlGetNegativeKeywords,{'b_name':this.b_name,'since':this.timeneg}).subscribe(data =>
       {
         this.keywords=data;
@@ -311,17 +279,17 @@ export class BusinessComponent {
         for (let i of this.keywords['data'])
         {
           this.allKeywordsNegArr.push( i['keyword']);
-          
+
         }
         this.allKeywordsNegArr = this.allKeywordsNegArr.filter(item => this.allKeywordsPos.indexOf(item) < 0);
-        
+
         var unique = this.allKeywordsNegArr.filter( this.onlyUnique );
         for(let i in unique)
         {
           this.allKeywordsNeg = this.allKeywordsNeg+j+". "+ unique[i]+"\n";
           j++;
         }
-       
+
       },
       err => {
         console.log(err);
@@ -335,10 +303,10 @@ export class BusinessComponent {
   getTopTenPositiveReviews()
   {
     this.allKeywordsPos='';
-    
+
     if(this.b_name!= undefined)
     {
-     
+
       this.dataService.postConfig(this.urlGetTopTenPositiveReviews,{'b_name':this.b_name}).subscribe(data =>
       {
         this.keywords=data;
@@ -346,10 +314,10 @@ export class BusinessComponent {
         for (let i of this.keywords['data'])
         {
             this.positiveReviews.push({'username':i['user'],'rating':i['predicted_rating'],'review':i['review'],'logo':this.logo[j%2],'photos':this.photos[j%5]})
-            
+
             j++;
         }
-        
+
       },
       err => {
         console.log(err);
@@ -362,23 +330,23 @@ export class BusinessComponent {
   getTopTenNegativeReviews()
   {
     this.allKeywordsNeg='';
-    
+
     if(this.b_name!= undefined)
     {
-     
+
       this.dataService.postConfig(this.urlGetTopTenNegativeReviews,{'b_name':this.b_name}).subscribe(data =>
       {
         this.keywords=data;
         var j=1;
-        
+
         for (let i of this.keywords['data'])
         {
             this.negativeReviews.push({'username':i['user'],'rating':i['predicted_rating'],'review':i['review'],'logo':this.logo[j%2],'photos':this.photos[j%5] })
-            
+
             j++;
         }
-      
-        
+
+
       },
       err => {
         console.log(err);
@@ -390,7 +358,7 @@ export class BusinessComponent {
   }
   getCustomerSatisfaction()
   {
-    
+
     //this.satisfaction=50;
     this.allReview='';
     if(this.b_name!= undefined)
@@ -411,13 +379,13 @@ export class BusinessComponent {
         {
           this.outColorAvg='#ff0015'
           this.inColorAvg='#ff606d'
-          
+
         }
         else if(this.satisfactionAvg>=20 && this.satisfactionAvg<50)
         {
           this.outColorAvg='#fd7800'
           this.inColorAvg='#f8aa7e'
-          
+
         }
         else if(this.satisfactionAvg>=50 && this.satisfactionAvg<75)
         {
@@ -429,10 +397,10 @@ export class BusinessComponent {
           this.outColorAvg='#78C000'
           this.inColorAvg='#C7E596'
         }
-    
 
-        
-       
+
+
+
       },
       err => {
         console.log(err);
@@ -440,15 +408,15 @@ export class BusinessComponent {
 
       this.dataService.postConfig(this.urlGetOverallSatisfaction,{'b_name':this.b_name}).subscribe(data =>
         {
-         
-          
-          
+
+
+
           this.satisfaction = data['satisfaction'];
           if(this.satisfaction>=0 && this.satisfaction<20)
           {
             this.outColorCust='#ff0015'
             this.inColorCust='#ff606d'
-            
+
           }
           else if(this.satisfaction>=20 && this.satisfaction<50)
           {
@@ -465,8 +433,8 @@ export class BusinessComponent {
             this.outColorCust='#78C000'
             this.inColorCust='#C7E596'
           }
-          
-         
+
+
         },
         err => {
           console.log(err);
@@ -483,13 +451,13 @@ export class BusinessComponent {
     {
       this.dataService.postConfig(this.urlGetAllReviews,{'b_name':this.b_name}).subscribe(data =>
       {
-       
+
         var j=1;
         this.graphData=data;
-        
+
         this.title="Predicted Rating VS User Rating";
         this.type="LineChart";
-        this.options = {   
+        this.options = {
           hAxis: {
             title: 'Users'
           },
@@ -498,11 +466,11 @@ export class BusinessComponent {
           },
           curveType: 'function',
           legend: { position: 'bottom' },
-          
+
         };
         this.width = 720;
         this.height = 400;
-        
+
         //console.log(this.graphData);
         for(let i=0;i<this.graphData['data'].length;i++)
         {
@@ -510,17 +478,17 @@ export class BusinessComponent {
           row[0] = String(j);
           row[1] = Number(this.graphData['data'][i]['predicted_rating']);
           row[2] = Number(this.graphData['data'][i]['manual_rating']);
-          
+
           this.data[j-1]=row;
-          
-          j++; 
+
+          j++;
         }
-        
+
         //console.log(this.data);
         this.columnNames[0]= "Reviews";
         this.columnNames[1]= "predicted_rating";
         this.columnNames[2]= "user_rating";
-       
+
       },
       err => {
         console.log(err);
@@ -530,7 +498,7 @@ export class BusinessComponent {
       alert('Select the business Name');
     }
   }
-  
+
   selectBusiness()
   {
     this.b_name=this.business_data.get('b_name').value;
@@ -556,15 +524,15 @@ export class BusinessComponent {
   Summary()
   {
     this.summary='';
-    
+
     if(this.b_name!= undefined)
     {
-     
+
       this.dataService.postConfig(this.urlGetSummary,{"b_name":this.b_name}).subscribe(data =>
       {
         this.summaryObj=data;
         this.summary=this.summaryObj['data'];
-        
+
       },
       err => {
         console.log(err);
@@ -581,7 +549,7 @@ export class BusinessComponent {
       this.dataService.postConfig(this.urlGetWordCloudPos,{'b_name':this.b_name}).subscribe(data =>
         {
           this.wordDataPosObj=data;
-          
+
           this.wordData=this.wordDataPosObj['data'];
           let j=0;
           this.wordDataPos=[];
@@ -590,9 +558,9 @@ export class BusinessComponent {
               this.wordDataPos[j]={weight:this.wordData[i][1],text:this.wordData[i][0],color:this.colors[j%6]};
               j++;
           }
-          
+
           this.optionsCloud= {
-            // if width is between 0 and 1 it will be set to the size of the upper element multiplied by the value 
+            // if width is between 0 and 1 it will be set to the size of the upper element multiplied by the value
             width: 1000,
             height: 400,
             overflow: false,
@@ -601,8 +569,8 @@ export class BusinessComponent {
         err => {
           console.log(err);
         });
-      
-      
+
+
     }
     else{
       alert('Select the business Name');
@@ -615,7 +583,7 @@ export class BusinessComponent {
       this.dataService.postConfig(this.urlGetWordCloudNeg,{'b_name':this.b_name}).subscribe(data =>
         {
           this.wordDataPosObj=data;
-          
+
           this.wordData=this.wordDataPosObj['data'];
           let j=0;
           this.wordDataPos=[];
@@ -624,9 +592,9 @@ export class BusinessComponent {
               this.wordDataPos[j]={weight:this.wordData[i][1],text:this.wordData[i][0],color:this.colors[j%6]};
               j++;
           }
-          
+
           this.optionsCloud= {
-            // if width is between 0 and 1 it will be set to the size of the upper element multiplied by the value 
+            // if width is between 0 and 1 it will be set to the size of the upper element multiplied by the value
             width: 1000,
             height: 400,
             overflow: false,
@@ -635,15 +603,15 @@ export class BusinessComponent {
         err => {
           console.log(err);
         });
-      
-      
+
+
     }
     else{
       alert('Select the business Name');
     }
   }
   getAllReviewsIntervals()
-  { 
+  {
     if(this.b_name!= undefined)
     {
       console.log({"b_name":this.b_name,"initial_date":this.date_data.get('date1').value, "final_date": this.date_data.get('date2').value})
@@ -668,10 +636,10 @@ export class BusinessComponent {
     }
     else{
       alert('Select the business Name');
-    }  
+    }
   }
   getSatisfactionGraph(){
-    
+
     this.allReview='';
     if(this.b_name!= undefined)
     {
@@ -683,14 +651,14 @@ export class BusinessComponent {
         for(let i in this.graphData['data'])
         {
           this.keywordsData.push([i,this.graphData['data'][i][0],this.graphData['data'][i][1]])
-          
+
         }
         this.dataItems=['ambience','place','quality','restaurant','cafe','attitude','menu','beverage','food','location','service']
-        
-        
-       
-        
-        
+
+
+
+
+
       },
       err => {
         console.log(err);
@@ -711,7 +679,7 @@ export class BusinessComponent {
       this.date_data.get('date2').patchValue(event.value)
       //console.log(this.date_data.get('date2').value)
     }
-    
+
   }
   getSatisfaction(keyword)
   {
@@ -720,13 +688,13 @@ export class BusinessComponent {
     {
       this.outColor='#ff0015'
       this.inColor='#ff606d'
-      
+
     }
     else if(this.satisfactionKeyword>=20 && this.satisfactionKeyword<50)
     {
       this.outColor='#fd7800'
       this.inColor='#f8aa7e'
-      
+
     }
     else if(this.satisfactionKeyword>=50 && this.satisfactionKeyword<75)
     {
@@ -738,7 +706,7 @@ export class BusinessComponent {
       this.outColor='#78C000'
       this.inColor='#C7E596'
     }
-    
+
   }
   getTopFivePosNeg(){
     this.allReview='';
@@ -757,14 +725,14 @@ export class BusinessComponent {
     {
       this.dataService.postConfig(this.urlGetReviewsOverTime,{'b_name':this.b_name}).subscribe(data =>
       {
-      
+
         var j=0;
         this.graphData=data;
-        
-        
+
+
         this.titleHist="Rating Over Time";
         this.typeHist="LineChart";
-        this.optionsHist = {   
+        this.optionsHist = {
           hAxis: {
             title: 'Time'
           },
@@ -785,26 +753,26 @@ export class BusinessComponent {
           row[0] = this.graphData['data'][i]['created_at'];
           //console.log(row)
           this.dataHist[j]=row;
-          
-          j++; 
+
+          j++;
         }
         //console.log(this.dataHist);
         this.columnNamesHist[0]= "Time";
         this.columnNamesHist[1]= "Rating";
-      
-        
-       
-        
-        
+
+
+
+
+
       },
       err => {
         console.log(err);
       });
 
-      
-      
-       
-        
+
+
+
+
     }
   }
 }

@@ -1,0 +1,25 @@
+<div fxLayout="row" >
+    <div mat-dialog-content class="card text-center"> 
+      <mat-card class=" card text-center" style="height:100%;width:98%;padding-left:10%;" >
+        <mat-card-header>
+              
+            <mat-card-title class="headerCard" style="margin-top:5%;background-color: #fd7800;width:1590px;padding:20px;">MERITS</mat-card-title>
+            
+        </mat-card-header>
+        <mat-card-content  class="card-deck card-center">
+          <div class ="row card-deck" style="margin-left:120px">
+            <div *ngFor="let item of allReview" class="row card-deck"> 
+              <div >
+                <mat-card class="card card-center" style="border-radius:20px;margin:30px;">
+                    <mat-card-header class="text-center" style="text-align:center;padding:30px;">
+                      <div mat-card-avatar class="example-header-image"></div>
+                      <mat-card-content class="card-center">{{item}}</mat-card-content>
+                    </mat-card-header> 
+                </mat-card>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+</div>

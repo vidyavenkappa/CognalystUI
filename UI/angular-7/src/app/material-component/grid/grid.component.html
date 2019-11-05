@@ -2,13 +2,13 @@
 <mat-card class=" card text-center" style="height:40%;width:50%;padding-left:10%" >
   <mat-card-header>
         
-      <mat-card-title style="font-size:24px;padding-left:30px;">TOP 10 HIGHLIGHTS</mat-card-title>
+      <mat-card-title style="font-size:24px;padding-left:30px;padding-top:30%">TOP 10 HIGHLIGHTS</mat-card-title>
       
   </mat-card-header>
-  <div class="card-deck" style="margin-left:120px">
+  <div class="card-deck" style="margin-left:60px">
   
     <mat-card-content *ngFor="let item of topPos" class="text-center "  >
-        <div class="circle-text bg-success">
+        <div class="circle-text pos text-center"  style="font-size: 30px;padding-top:130px;">
             {{item}}
          </div>
     </mat-card-content>
@@ -18,14 +18,13 @@
 <mat-card class=" card text-center" style="height:40%;width:50%;padding-left:10%" >
     <mat-card-header>
           
-        <mat-card-title style="font-size:24px;padding-left:30px;">TOP 10 ISSUES</mat-card-title>
+        <mat-card-title style="font-size:24px;padding-left:30px;padding-top:40%">TOP 10 ISSUES</mat-card-title>
         
     </mat-card-header>
-    <div class="card-deck " style="margin-left:120px">
-      <mat-card-content *ngFor="let item of topNeg" class="text-center "style="horizontal-align: middle;
-      vertical-align: middle;" >
+    <div class="card-deck " style="margin-left:60px">
+      <mat-card-content *ngFor="let item of topNeg" class="card-center" style="color:crimson;vertical-align: middle;" >
           
-          <div class="circle-text bg-danger">
+          <div class="circle-text neg text-center" style="font-size: 30px;padding-top:130px;">
               {{item}}
            </div>
       </mat-card-content>
